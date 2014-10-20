@@ -8,8 +8,14 @@ namespace Memory
 {
     class computerPlayer : Player
     {
-        public computerPlayer()
+        int difficulty;
+        public computerPlayer(string _name, int _difficulty)
         {
+            winnings = 0;
+            points = 0;
+            name = _name;
+            difficulty = _difficulty;
+            currentlyPlaying = false;
         }
         
     }

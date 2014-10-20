@@ -23,6 +23,7 @@ namespace Memory
         int choice;
         int time;
         int time2;
+        int compCount = 1;
 
         public FormStart()
         {
@@ -234,7 +235,7 @@ namespace Memory
             {
                 lblInfo.Text = "";
                 name = tbName.Text;
-                Player p = new humanPlayer(name);
+                humanPlayer p = new humanPlayer(name);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
                 tbName.Clear();
@@ -269,6 +270,31 @@ namespace Memory
                 btnStart.Enabled = true;
             }
 
+        }
+
+        private void btnAddComputer_Click(object sender, EventArgs e)
+        {
+         
+            string compName = "Computer " + compCount;
+            lblInfo.Text = "";
+            name = compName;
+            compCount++;
+                computerPlayer p = new computerPlayer(name, 2);
+                playerList.Add(p);
+                lbNames.Items.Add(p.Name);
+            
+                if (lbNames.Items.Count > 5)
+                {
+                    btnStart.Enabled = false;
+                    btnNextNames.Enabled = false;
+                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
+                }
+                else if (lbNames.Items.Count < 2)
+                {
+                    btnStart.Enabled = false;
+                    btnNextNames.Enabled = false;
+                    lblInfo.Text = "Need at least 2 players.";
+                }
         }
     }
 }
