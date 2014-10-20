@@ -21,6 +21,8 @@ namespace Memory
         private List<Player> playerList;
         private int time2;
 
+
+
         public EndScreen(List<Player> _winnerList, List <Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2)
         {
             InitializeComponent();
