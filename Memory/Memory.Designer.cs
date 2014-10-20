@@ -134,6 +134,7 @@
             this.Name = "Memory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory";
+            this.Load += new System.EventHandler(this.Memory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

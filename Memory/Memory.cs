@@ -49,7 +49,50 @@ namespace Memory
 
             allCardsInPlayList = new List<Card>();
             compareTwoCardsList = new List<Card>();
-           
+            //add playerlist to listbox and create datasource
+            lblPlayersInGame.Text = "";
+            foreach (Player p in playerList)
+            {
+                lblPlayersInGame.Text += p.Name + "\nScore: " + p.Points + "\nWins: " + p.Winnings + "\n\n";
+            }
+            //selects first player in listbox to begin game
+
+            playerList[0].CurrentlyPlaying = true;
+            lblPlayerTurn.Text = playerList[0].Name + "'s turn";
+            CreateBoard();
+            timers();
+        }
+        public void CreateBoard()
+        {
+            if (selectedDeck == 1)
+            {
+                selectedDeckArray = Images.DeckAnimals();
+            }
+            else
+            {
+                selectedDeckArray = Images.DeckOther();
+            }
+            //calculate size of cards
+            totalCardSize = pCards.Width / columns;
+            space = totalCardSize / 6;
+            cardSize = totalCardSize - space;
+
+            //add all cards to board
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Card c = new Card(j, i, HandleEventClick, cardSize, space);
+                    allCardsInPlayList.Add(c);
+                    this.pCards.Controls.Add(c);
+                }
+            }
+
+            RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
+        }
+
+        public void timers()
+        {
             myTimer = new Timer();
             myTimer.Interval = time;
             myTimer.Tick += new System.EventHandler(TimerEvent);
@@ -69,48 +112,8 @@ namespace Memory
             imageTimer2.Interval = time2 / timerImages2.Count();
             imageTimer2.Tick += imageTimer_Tick2;
             timerCounter2 = 0;
-
-            //add playerlist to listbox and create datasource
-            lblPlayersInGame.Text = "";
-            foreach (Player p in playerList)
-            {
-                lblPlayersInGame.Text += p.Name + "\nScore: " + p.Points + "\nWins: " + p.Winnings + "\n\n";
-            }
-
-            if (selectedDeck == 1)
-            {
-                selectedDeckArray = Images.DeckAnimals();
-            }
-            else
-            {
-                selectedDeckArray = Images.DeckOther();
-            }
-
-            //calculate size of cards
-            totalCardSize = pCards.Width / columns;
-            space = totalCardSize / 6;
-            cardSize = totalCardSize - space;
-
-            //add all cards to board
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < columns; j++)
-                {
-                    Card c = new Card(j, i, HandleEventClick, cardSize, space);
-                    allCardsInPlayList.Add(c);
-                    this.pCards.Controls.Add(c);
-                }
-            }
-
-            RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
-
-            //selects first player in listbox to begin game
-
-            playerList[0].CurrentlyPlaying = true;
-            lblPlayerTurn.Text = playerList[0].Name + "'s turn";
         }
 
-       
 
         private void imageTimer_Tick(object sender, EventArgs e)
         {
@@ -394,6 +397,11 @@ namespace Memory
         private void btnEndGame_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Memory_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

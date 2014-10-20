@@ -258,9 +258,8 @@ namespace Memory
             difficulty = 1;
             string computerName = "Computer " + computerCount;
             lblInfo.Text = "";
-            name = computerName;
             computerCount++;
-                ComputerPlayer p = new ComputerPlayer(name, difficulty);
+                ComputerPlayer p = new ComputerPlayer(computerName, difficulty);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
                 checkInput();
