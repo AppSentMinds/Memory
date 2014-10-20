@@ -106,7 +106,7 @@
             this.btnBackCards.TabIndex = 7;
             this.btnBackCards.Text = "Back";
             this.btnBackCards.UseVisualStyleBackColor = false;
-            this.btnBackCards.Click += new System.EventHandler(this.btnBackCards_Click);
+            this.btnBackCards.Click += new System.EventHandler(this.BtnBackCards_Click);
             // 
             // pbDecksArrow
             // 
@@ -130,7 +130,7 @@
             this.btnNextDecks.TabIndex = 7;
             this.btnNextDecks.Text = "Next";
             this.btnNextDecks.UseVisualStyleBackColor = false;
-            this.btnNextDecks.Click += new System.EventHandler(this.btnNextDecks_Click);
+            this.btnNextDecks.Click += new System.EventHandler(this.BtnNextDecks_Click);
             // 
             // pbDeckMixed
             // 
@@ -143,7 +143,7 @@
             this.pbDeckMixed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbDeckMixed.TabIndex = 0;
             this.pbDeckMixed.TabStop = false;
-            this.pbDeckMixed.Click += new System.EventHandler(this.pbDeckMixed_Click);
+            this.pbDeckMixed.Click += new System.EventHandler(this.PbDeckMixed_Click);
             // 
             // pbDeckAnimals
             // 
@@ -156,7 +156,7 @@
             this.pbDeckAnimals.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbDeckAnimals.TabIndex = 0;
             this.pbDeckAnimals.TabStop = false;
-            this.pbDeckAnimals.Click += new System.EventHandler(this.pbDeckAnimals_Click);
+            this.pbDeckAnimals.Click += new System.EventHandler(this.PbDeckAnimals_Click);
             // 
             // btnStart
             // 
@@ -169,7 +169,7 @@
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start Game";
             this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnBackSize
             // 
@@ -182,7 +182,7 @@
             this.btnBackSize.TabIndex = 7;
             this.btnBackSize.Text = "Back";
             this.btnBackSize.UseVisualStyleBackColor = false;
-            this.btnBackSize.Click += new System.EventHandler(this.btnBackSize_Click);
+            this.btnBackSize.Click += new System.EventHandler(this.BtnBackSize_Click);
             // 
             // lblSizeInfo
             // 
@@ -230,7 +230,7 @@
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(330, 34);
             this.cbTime.TabIndex = 9;
-            this.cbTime.SelectedIndexChanged += new System.EventHandler(this.cbTime_SelectedIndexChanged);
+            this.cbTime.SelectedIndexChanged += new System.EventHandler(this.CbTime_SelectedIndexChanged);
             // 
             // cbCards
             // 
@@ -241,7 +241,7 @@
             this.cbCards.Name = "cbCards";
             this.cbCards.Size = new System.Drawing.Size(330, 34);
             this.cbCards.TabIndex = 9;
-            this.cbCards.SelectedIndexChanged += new System.EventHandler(this.cbCards_SelectedIndexChanged);
+            this.cbCards.SelectedIndexChanged += new System.EventHandler(this.CbCards_SelectedIndexChanged);
             // 
             // pbSizeArrow
             // 
@@ -307,7 +307,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(220, 32);
             this.tbName.TabIndex = 1;
-            this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbName_KeyPress);
+            this.tbName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbName_KeyPress);
             // 
             // btnAddPlayer
             // 
@@ -320,7 +320,7 @@
             this.btnAddPlayer.TabIndex = 3;
             this.btnAddPlayer.Text = "Add Player";
             this.btnAddPlayer.UseVisualStyleBackColor = false;
-            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
+            this.btnAddPlayer.Click += new System.EventHandler(this.BtnAddPlayer_Click);
             // 
             // btnNextNames
             // 
@@ -333,7 +333,7 @@
             this.btnNextNames.TabIndex = 7;
             this.btnNextNames.Text = "Next";
             this.btnNextNames.UseVisualStyleBackColor = false;
-            this.btnNextNames.Click += new System.EventHandler(this.btnNextNames_Click);
+            this.btnNextNames.Click += new System.EventHandler(this.BtnNextNames_Click);
             // 
             // lblNamesInfo
             // 
@@ -393,7 +393,7 @@
             this.btnClear.TabIndex = 6;
             this.btnClear.Text = "Clear Selected";
             this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // gbDecks
             // 
@@ -463,7 +463,7 @@
             this.btnAddComputer.TabIndex = 10;
             this.btnAddComputer.Text = "Add Computer";
             this.btnAddComputer.UseVisualStyleBackColor = true;
-            this.btnAddComputer.Click += new System.EventHandler(this.btnAddComputer_Click);
+            this.btnAddComputer.Click += new System.EventHandler(this.BtnAddComputer_Click);
             // 
             // FormStart
             // 

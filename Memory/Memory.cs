@@ -51,7 +51,7 @@ namespace Memory
             compareTwoCardsList = new List<Card>();
 
             CreateBoardGame();
-            timers();
+            Timers();
         }
 
         public void CreateBoardGame()
@@ -89,7 +89,7 @@ namespace Memory
             RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
         }
 
-        public void timers()
+        public void Timers()
         {
             myTimer = new Timer();
             myTimer.Interval = time;
@@ -102,17 +102,17 @@ namespace Memory
             timerImages = Images.Timer();
             imageTimer = new Timer();
             imageTimer.Interval = time / timerImages.Count();
-            imageTimer.Tick += imageTimerEvent1;
+            imageTimer.Tick += ImageTimerEvent1;
             timerCounter = 0;
 
             timerImages2 = Images.Timer();
             imageTimer2 = new Timer();
             imageTimer2.Interval = time2 / timerImages2.Count();
-            imageTimer2.Tick += imageTimerEvent2;
+            imageTimer2.Tick += ImageTimerEvent2;
             timerCounter2 = 0;
         }
 
-        private void imageTimerEvent1(object sender, EventArgs e)
+        private void ImageTimerEvent1(object sender, EventArgs e)
         {
             if (timerCounter < timerImages.Count())
             {
@@ -127,7 +127,7 @@ namespace Memory
             }
         }
 
-        private void imageTimerEvent2(object sender, EventArgs e)
+        private void ImageTimerEvent2(object sender, EventArgs e)
         {
             if (timerCounter2 < timerImages2.Count())
             {
@@ -387,7 +387,7 @@ namespace Memory
             }
         }
 
-        private void btnEndGame_Click(object sender, EventArgs e)
+        private void BtnEndGame(object sender, EventArgs e)
         {
             Application.Exit();
         }

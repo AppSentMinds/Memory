@@ -60,12 +60,12 @@ namespace Memory
 
         }
 
-        private void btnAddPlayer_Click(object sender, EventArgs e)
+        private void BtnAddPlayer_Click(object sender, EventArgs e)
         {
             AddPlayer();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             try
             {
@@ -73,9 +73,8 @@ namespace Memory
                 lbNames.Items.Remove(lbNames.SelectedItem);
                 lblInfo.Text = "";
 
-                checkInput();
+                CheckInput();
                 
-
             }
             catch
             {
@@ -83,7 +82,7 @@ namespace Memory
             }
         }
 
-        private void tbName_KeyPress(object sender, KeyPressEventArgs e)
+        private void TbName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
             {
@@ -91,7 +90,7 @@ namespace Memory
             }
         }
 
-        private void btnNextNames_Click(object sender, EventArgs e)
+        private void BtnNextNames_Click(object sender, EventArgs e)
         {
             gbNames.Visible = false;
             gbDecks.Visible = true;
@@ -101,7 +100,7 @@ namespace Memory
             lblDecksInfo.Visible = true;
         }
 
-        private void btnBackCards_Click(object sender, EventArgs e)
+        private void BtnBackCards_Click(object sender, EventArgs e)
         {
             gbDecks.Visible = false;
             gbNames.Visible = true;
@@ -111,7 +110,7 @@ namespace Memory
             lblDecksInfo.Visible = false;
         }
 
-        private void pbDeckAnimals_Click(object sender, EventArgs e)
+        private void PbDeckAnimals_Click(object sender, EventArgs e)
         {
             pbDeckAnimals.BackgroundImage = Properties.Resources.BackcardGreen;
             pbDeckMixed.BackgroundImage = null;
@@ -120,7 +119,7 @@ namespace Memory
             btnNextDecks.Enabled = true;
         }
 
-        private void pbDeckMixed_Click(object sender, EventArgs e)
+        private void PbDeckMixed_Click(object sender, EventArgs e)
         {
             pbDeckAnimals.BackgroundImage = null;
             pbDeckMixed.BackgroundImage = Properties.Resources.BackcardRed;
@@ -129,7 +128,7 @@ namespace Memory
             btnNextDecks.Enabled = true;
         }
 
-        private void btnNextDecks_Click(object sender, EventArgs e)
+        private void BtnNextDecks_Click(object sender, EventArgs e)
         {
             gbDecks.Visible = false;
             gbSize.Visible = true;
@@ -139,7 +138,7 @@ namespace Memory
             lblDecksInfo.Visible = false;
         }
 
-        private void btnBackSize_Click(object sender, EventArgs e)
+        private void BtnBackSize_Click(object sender, EventArgs e)
         {
             gbSize.Visible = false;
             gbDecks.Visible = true;
@@ -149,7 +148,7 @@ namespace Memory
             lblSizeInfo.Visible = false;
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             SoundPlayer player0 = new SoundPlayer(sounds[1]);
             player0.Play();
@@ -161,7 +160,7 @@ namespace Memory
            
         }
 
-        private void cbCards_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbCards_SelectedIndexChanged(object sender, EventArgs e)
         {
             choice = cbCards.SelectedIndex;
             switch (choice)
@@ -169,27 +168,27 @@ namespace Memory
                 case 0:
                     columns = 2;
                     rows = 2;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 1:
                     columns = 4;
                     rows = 4;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 2:
                     columns = 6;
                     rows = 6;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 3:
                     columns = 8;
                     rows = 8;
-                    checkInput();
+                    CheckInput();
                     break;
             }
         }
 
-        private void cbTime_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbTime_SelectedIndexChanged(object sender, EventArgs e)
         {
             choice = cbTime.SelectedIndex;
             switch (choice)
@@ -197,22 +196,20 @@ namespace Memory
                 case 0:
                     time = 5000;
                     time2 = 1500;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 1:
                     time = 3000;
                     time2 = 1000;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 2:
                     time = 1000;
                     time2 = 500;
-                    checkInput();
+                    CheckInput();
                     break;
             }
         }
-
-        //METHODS BELOW THIS POINT
 
         private void AddPlayer()
         {
@@ -225,10 +222,10 @@ namespace Memory
                 lbNames.Items.Add(p.Name);
                 tbName.Clear();
             }
-               checkInput();
+               CheckInput();
         }
 
-        private void checkInput()
+        private void CheckInput()
         {
             if (columns != 0 && time != 0)
             {
@@ -253,7 +250,7 @@ namespace Memory
 
         }
 
-        private void btnAddComputer_Click(object sender, EventArgs e)
+        private void BtnAddComputer_Click(object sender, EventArgs e)
         {
             difficulty = 1;
             string computerName = "Computer " + computerCount;
@@ -262,7 +259,7 @@ namespace Memory
                 ComputerPlayer p = new ComputerPlayer(computerName, difficulty);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
-                checkInput();
+                CheckInput();
         }
 
         private void FormStart_Load(object sender, EventArgs e)
