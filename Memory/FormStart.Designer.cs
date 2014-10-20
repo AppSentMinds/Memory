@@ -482,6 +482,7 @@
             this.MaximizeBox = false;
             this.Name = "FormStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.FormStart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbDecksArrow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckMixed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckAnimals)).EndInit();

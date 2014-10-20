@@ -95,7 +95,7 @@
     <Compile Include="FormStart.Designer.cs">
       <DependentUpon>FormStart.cs</DependentUpon>
     </Compile>
-    <Compile Include="humanPlayer.cs" />
+    <Compile Include="HumanPlayer.cs" />
     <Compile Include="Images.cs" />
     <Compile Include="Memory.cs">
       <SubType>Form</SubType>

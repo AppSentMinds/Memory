@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Memory
 {
-    class computerPlayer : Player
+    class ComputerPlayer : Player
     {
         int difficulty;
-        public computerPlayer(string _name, int _difficulty)
+        public ComputerPlayer(string _name, int _difficulty)
         {
             winnings = 0;
             points = 0;

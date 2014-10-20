@@ -23,7 +23,7 @@ namespace Memory
         int choice;
         int time;
         int time2;
-        int compCount = 1;
+        int computerCount = 1;
 
         public FormStart()
         {
@@ -72,23 +72,7 @@ namespace Memory
                 lbNames.Items.Remove(lbNames.SelectedItem);
                 lblInfo.Text = "";
 
-                //check if listbox has 2 items to make startbutton enabled or disabled
-                if (lbNames.Items.Count > 5)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
-                }
-                else if (lbNames.Items.Count < 2)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Need at least 2 players.";
-                }
-                else
-                {
-                    btnNextNames.Enabled = true;
-                }
+                checkInput();
                 
 
             }
@@ -235,32 +219,12 @@ namespace Memory
             {
                 lblInfo.Text = "";
                 name = tbName.Text;
-                humanPlayer p = new humanPlayer(name);
+                HumanPlayer p = new HumanPlayer(name);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
                 tbName.Clear();
-               
-                if (lbNames.Items.Count > 5)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
-                }
-                else if (lbNames.Items.Count < 2)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Need at least 2 players.";
-                } 
-                else
-                {
-                    btnNextNames.Enabled = true;
-                }
             }
-            else
-            {
-                lblInfo.Text = "No input, try again.";
-            }
+               checkInput();
         }
 
         private void checkInput()
@@ -269,32 +233,41 @@ namespace Memory
             {
                 btnStart.Enabled = true;
             }
+            if (lbNames.Items.Count > 5)
+            {
+                btnStart.Enabled = false;
+                btnNextNames.Enabled = false;
+                lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
+            }
+            else if (lbNames.Items.Count < 2)
+            {
+                btnStart.Enabled = false;
+                btnNextNames.Enabled = false;
+                lblInfo.Text = "Need at least 2 players.";
+            }
+            else
+            {
+                btnNextNames.Enabled = true;
+            }
 
         }
 
         private void btnAddComputer_Click(object sender, EventArgs e)
         {
          
-            string compName = "Computer " + compCount;
+            string computerName = "Computer " + computerCount;
             lblInfo.Text = "";
-            name = compName;
-            compCount++;
-                computerPlayer p = new computerPlayer(name, 2);
+            name = computerName;
+            computerCount++;
+                ComputerPlayer p = new ComputerPlayer(name, 2);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
-            
-                if (lbNames.Items.Count > 5)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
-                }
-                else if (lbNames.Items.Count < 2)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Need at least 2 players.";
-                }
+                checkInput();
+        }
+
+        private void FormStart_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

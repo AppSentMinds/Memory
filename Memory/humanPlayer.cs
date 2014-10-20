@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Memory
 {
-    class humanPlayer : Player
+    class HumanPlayer : Player
     {
-        public humanPlayer(string _name)
+        public HumanPlayer(string _name)
         {
             name = _name;
             points = 0;
