@@ -24,6 +24,7 @@ namespace Memory
         int time;
         int time2;
         int computerCount = 1;
+        int difficulty;
 
         public FormStart()
         {
@@ -254,12 +255,12 @@ namespace Memory
 
         private void btnAddComputer_Click(object sender, EventArgs e)
         {
-         
+            difficulty = 1;
             string computerName = "Computer " + computerCount;
             lblInfo.Text = "";
             name = computerName;
             computerCount++;
-                ComputerPlayer p = new ComputerPlayer(name, 2);
+                ComputerPlayer p = new ComputerPlayer(name, difficulty);
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
                 checkInput();

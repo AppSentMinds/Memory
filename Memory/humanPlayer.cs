@@ -10,10 +10,10 @@ namespace Memory
     {
         public HumanPlayer(string _name)
         {
-            name = _name;
-            points = 0;
-            winnings = 0;
-            currentlyPlaying = false;
+            Name = _name;
+            Points = 0;
+            Winnings = 0;
+            CurrentlyPlaying = false;
         }
     }
 }
