@@ -8,6 +8,7 @@ namespace Memory
 {
     public class Player //???? PUBLIC ????
     {
+
         public string name;
         public int points;
         public bool currentlyPlaying = false;
