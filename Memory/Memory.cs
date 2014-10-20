@@ -49,21 +49,18 @@ namespace Memory
 
             allCardsInPlayList = new List<Card>();
             compareTwoCardsList = new List<Card>();
-            //add playerlist to listbox and create datasource
+
+            CreateBoardGame();
+            timers();
+        }
+
+        public void CreateBoardGame()
+        {
             lblPlayersInGame.Text = "";
             foreach (Player p in playerList)
             {
                 lblPlayersInGame.Text += p.Name + "\nScore: " + p.Points + "\nWins: " + p.Winnings + "\n\n";
             }
-            //selects first player in listbox to begin game
-
-            playerList[0].CurrentlyPlaying = true;
-            lblPlayerTurn.Text = playerList[0].Name + "'s turn";
-            CreateBoard();
-            timers();
-        }
-        public void CreateBoard()
-        {
             if (selectedDeck == 1)
             {
                 selectedDeckArray = Images.DeckAnimals();
@@ -87,7 +84,8 @@ namespace Memory
                     this.pCards.Controls.Add(c);
                 }
             }
-
+            playerList[0].CurrentlyPlaying = true;
+            lblPlayerTurn.Text = playerList[0].Name + "'s turn";
             RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
         }
 
@@ -104,18 +102,17 @@ namespace Memory
             timerImages = Images.Timer();
             imageTimer = new Timer();
             imageTimer.Interval = time / timerImages.Count();
-            imageTimer.Tick += imageTimer_Tick;
+            imageTimer.Tick += imageTimerEvent1;
             timerCounter = 0;
 
             timerImages2 = Images.Timer();
             imageTimer2 = new Timer();
             imageTimer2.Interval = time2 / timerImages2.Count();
-            imageTimer2.Tick += imageTimer_Tick2;
+            imageTimer2.Tick += imageTimerEvent2;
             timerCounter2 = 0;
         }
 
-
-        private void imageTimer_Tick(object sender, EventArgs e)
+        private void imageTimerEvent1(object sender, EventArgs e)
         {
             if (timerCounter < timerImages.Count())
             {
@@ -130,7 +127,7 @@ namespace Memory
             }
         }
 
-        private void imageTimer_Tick2(object sender, EventArgs e)
+        private void imageTimerEvent2(object sender, EventArgs e)
         {
             if (timerCounter2 < timerImages2.Count())
             {
@@ -145,32 +142,6 @@ namespace Memory
                 pbTimer.Image = timerImages2[timerImages2.Count() - 1];
             }
         }
-
-
-        public void HandleEventClick(object sender, EventArgs e) //This is the method for the EventHandler that handles all clicks on cards
-        {
-            Card c = sender as Card;
-            c.Image = c.Front;
-            c.Flipped = true;
-            compareTwoCardsList.Add(c);
-            c.Enabled = false;
-
-            if (compareTwoCardsList.Count == 1)
-            {
-                myTimer.Start();
-                imageTimer.Start();
-            }
-            else if (compareTwoCardsList.Count == 2)
-            {
-
-                myTimer.Stop();
-                imageTimer.Stop();
-                timerCounter = 0;
-                pbTimer.Image = timerImages[timerImages.Count() - 1];
-                CompareCards();
-            }
-        }
-
 
         public void TimerEvent(object sender, EventArgs e)
         {
@@ -235,6 +206,30 @@ namespace Memory
                 }
             }
             GoToNextPlayer();
+        }
+
+        public void HandleEventClick(object sender, EventArgs e) //This is the method for the EventHandler that handles all clicks on cards
+        {
+            Card c = sender as Card;
+            c.Image = c.Front;
+            c.Flipped = true;
+            compareTwoCardsList.Add(c);
+            c.Enabled = false;
+
+            if (compareTwoCardsList.Count == 1)
+            {
+                myTimer.Start();
+                imageTimer.Start();
+            }
+            else if (compareTwoCardsList.Count == 2)
+            {
+
+                myTimer.Stop();
+                imageTimer.Stop();
+                timerCounter = 0;
+                pbTimer.Image = timerImages[timerImages.Count() - 1];
+                CompareCards();
+            }
         }
 
         public void CompareCards()
@@ -391,8 +386,6 @@ namespace Memory
                 listofCards[i].Back = deckOfCards[deckOfCards.Length - 1];//always the last card in deck
             }
         }
-
- 
 
         private void btnEndGame_Click(object sender, EventArgs e)
         {
