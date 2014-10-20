@@ -14,7 +14,7 @@ namespace Memory
 {
     public partial class Memory : Form
     {
-        private List<HumanPlayer> playerList;
+        private List<Player> playerList;
         private Image[] selectedDeckArray;
         private int selectedDeck;
         private int rows;
@@ -36,7 +36,7 @@ namespace Memory
         int timerCounter2;
         int time2;
 
-        public Memory(List<HumanPlayer> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2) //constructor
+        public Memory(List<Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2) //constructor
         {
             InitializeComponent();
 
@@ -318,7 +318,7 @@ namespace Memory
         {
             int totalPointsAllPlayers = 0;
             int highestPoint = 0;
-            List<HumanPlayer> winnerList = new List<HumanPlayer>();
+            List<Player> winnerList = new List<Player>();
 
             foreach (HumanPlayer p in playerList)
             {

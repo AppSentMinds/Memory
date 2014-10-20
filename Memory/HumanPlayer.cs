@@ -14,8 +14,6 @@ namespace Memory
             Points = 0;
             Winnings = 0;
         }
-
-      
     }
 }
 

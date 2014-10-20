@@ -58,6 +58,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.gbSize = new System.Windows.Forms.Panel();
+            this.btnAddComputerPlayer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecksArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckMixed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckAnimals)).BeginInit();
@@ -241,6 +242,7 @@
             // 
             this.gbNames.BackColor = System.Drawing.Color.Transparent;
             this.gbNames.BackgroundImage = global::Memory.Properties.Resources._50procent_opt;
+            this.gbNames.Controls.Add(this.btnAddComputerPlayer);
             this.gbNames.Controls.Add(this.label2);
             this.gbNames.Controls.Add(this.label1);
             this.gbNames.Controls.Add(this.tbName);
@@ -293,7 +295,7 @@
             this.btnAddPlayer.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPlayer.Location = new System.Drawing.Point(13, 66);
             this.btnAddPlayer.Name = "btnAddPlayer";
-            this.btnAddPlayer.Size = new System.Drawing.Size(75, 23);
+            this.btnAddPlayer.Size = new System.Drawing.Size(112, 23);
             this.btnAddPlayer.TabIndex = 3;
             this.btnAddPlayer.Text = "Add Player";
             this.btnAddPlayer.UseVisualStyleBackColor = false;
@@ -328,7 +330,7 @@
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfo.ForeColor = System.Drawing.Color.White;
-            this.lblInfo.Location = new System.Drawing.Point(10, 95);
+            this.lblInfo.Location = new System.Drawing.Point(10, 148);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(26, 15);
             this.lblInfo.TabIndex = 7;
@@ -378,7 +380,7 @@
             this.gbDecks.Controls.Add(this.btnBackCards);
             this.gbDecks.Controls.Add(this.lblDecksInfo);
             this.gbDecks.Controls.Add(this.pbDecksArrow);
-            this.gbDecks.Location = new System.Drawing.Point(25, 42);
+            this.gbDecks.Location = new System.Drawing.Point(243, 157);
             this.gbDecks.Name = "gbDecks";
             this.gbDecks.Size = new System.Drawing.Size(274, 318);
             this.gbDecks.TabIndex = 12;
@@ -409,6 +411,7 @@
             // 
             this.gbSize.BackColor = System.Drawing.Color.Transparent;
             this.gbSize.BackgroundImage = global::Memory.Properties.Resources._50procent_opt;
+            this.gbSize.Controls.Add(this.gbDecks);
             this.gbSize.Controls.Add(this.btnStart);
             this.gbSize.Controls.Add(this.btnBackSize);
             this.gbSize.Controls.Add(this.lblSizeInfo);
@@ -417,10 +420,21 @@
             this.gbSize.Controls.Add(this.label8);
             this.gbSize.Controls.Add(this.cbCards);
             this.gbSize.Controls.Add(this.cbTime);
-            this.gbSize.Location = new System.Drawing.Point(25, 45);
+            this.gbSize.Location = new System.Drawing.Point(25, 48);
             this.gbSize.Name = "gbSize";
             this.gbSize.Size = new System.Drawing.Size(274, 318);
             this.gbSize.TabIndex = 10;
+            // 
+            // btnAddComputerPlayer
+            // 
+            this.btnAddComputerPlayer.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddComputerPlayer.Location = new System.Drawing.Point(13, 95);
+            this.btnAddComputerPlayer.Name = "btnAddComputerPlayer";
+            this.btnAddComputerPlayer.Size = new System.Drawing.Size(112, 39);
+            this.btnAddComputerPlayer.TabIndex = 11;
+            this.btnAddComputerPlayer.Text = "Add Computer Player";
+            this.btnAddComputerPlayer.UseVisualStyleBackColor = true;
+            this.btnAddComputerPlayer.Click += new System.EventHandler(this.btnAddComputerPlayer_Click);
             // 
             // FormStart
             // 
@@ -430,9 +444,8 @@
             this.BackgroundImage = global::Memory.Properties.Resources.blessing_olive_green_design_opt;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(329, 399);
-            this.Controls.Add(this.gbDecks);
-            this.Controls.Add(this.gbSize);
             this.Controls.Add(this.gbNames);
+            this.Controls.Add(this.gbSize);
             this.Controls.Add(this.label3);
             this.MaximizeBox = false;
             this.Name = "FormStart";
@@ -485,5 +498,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel gbSize;
+        private System.Windows.Forms.Button btnAddComputerPlayer;
     }
 }

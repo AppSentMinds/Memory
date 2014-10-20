@@ -14,6 +14,8 @@ namespace Memory
         {
             Name = _name;
             this.difficulty = _difficulty;
+            Points = 0;
+            Winnings = 0;
         }
     }
 }

@@ -12,17 +12,16 @@ namespace Memory
 {
     public partial class EndScreen : Form
     {
-        private List<HumanPlayer> winnerList;
+        private List<Player> winnerList;
         string resultTied = "";
-        string message = "";
         private int rows;
         private int columns;
         private int selectedDeck;
         private int time;
-        private List<HumanPlayer> playerList;
+        private List<Player> playerList;
         private int time2;
 
-        public EndScreen(List<HumanPlayer> _winnerList, List <HumanPlayer> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2)
+        public EndScreen(List<Player> _winnerList, List <Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2)
         {
             InitializeComponent();
             this.winnerList = _winnerList;

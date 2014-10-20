@@ -15,7 +15,7 @@ namespace Memory
     public partial class FormStart : Form
     {
         string name;
-        List<HumanPlayer> playerList = new List<HumanPlayer>();
+        List<Player> playerList = new List<Player>();
         private Stream[] sounds = { Properties.Resources.welcome, Properties.Resources.Start_playing };
         int selectedDeck; //1 = animals 2 = mixed things
         int columns;
@@ -23,6 +23,7 @@ namespace Memory
         int choice;
         int time;
         int time2;
+        int computerCount;
 
         public FormStart()
         {
@@ -225,6 +226,17 @@ namespace Memory
             }
         }
 
+        private void btnAddComputerPlayer_Click(object sender, EventArgs e)
+        {
+            string computerName = "Computer " + computerCount;
+            lblInfo.Text = "";
+            name = computerName;
+            computerCount++;
+            ComputerPlayer p = new ComputerPlayer(name, 2);
+            playerList.Add(p);
+            lbNames.Items.Add(p.Name);
+        }
+
         //METHODS BELOW THIS POINT
 
         private void AddPlayer()
@@ -269,6 +281,8 @@ namespace Memory
             }
 
         }
+
+       
     }
 }
 
