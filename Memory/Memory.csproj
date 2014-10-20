@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDD35929-B6AE-4E07-A2CF-DF7711761616}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Memory</RootNamespace>
+    <AssemblyName>The Memory Game</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\haral_000\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>BackcardGreen.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4509608D37262CE416B11804E4D3323450109C53</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Memory_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Card.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ComputerPlayer.cs" />
+    <Compile Include="EndScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EndScreen.Designer.cs">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HumanPlayer.cs" />
+    <Compile Include="Images.cs" />
+    <Compile Include="Memory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Memory.Designer.cs">
+      <DependentUpon>Memory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EndScreen.resx">
+      <DependentUpon>EndScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Memory.resx">
+      <DependentUpon>Memory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Memory_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImageBrownMushroom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImageLuigi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageRedWhiteMushroom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagesBomb.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesBowser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagesPrincess.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagesQuestion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageSuperMario.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagesYoshi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BackcardGreen.ico" />
+    <Content Include="imageRedWhiteMushroom.ico" />
+    <None Include="Resources\BackcardGreen.ico" />
+    <None Include="Resources\Tie.wav" />
+    <None Include="Resources\welcome.wav" />
+    <None Include="Resources\Start playing.wav" />
+    <None Include="Resources\pair_FX.wav" />
+    <None Include="Resources\how many cards.wav" />
+    <None Include="Resources\All hail the winner.wav" />
+    <None Include="Resources\OthersCollage_opt.png" />
+    <None Include="Resources\AnimalsCollage_opt.png" />
+    <None Include="Resources\50procent_opt.png" />
+    <None Include="Resources\ArrowOldWhite_opt.png" />
+    <None Include="Resources\ArrowOld_opt.png" />
+    <None Include="Resources\blessing-olive-green-design_opt.jpg" />
+    <None Include="Resources\TimerNew11.png" />
+    <None Include="Resources\TimerNew10.png" />
+    <None Include="Resources\TimerNew09.png" />
+    <None Include="Resources\TimerNew08.png" />
+    <None Include="Resources\TimerNew07.png" />
+    <None Include="Resources\TimerNew06.png" />
+    <None Include="Resources\TimerNew05.png" />
+    <None Include="Resources\TimerNew04.png" />
+    <None Include="Resources\TimerNew03.png" />
+    <None Include="Resources\TimerNew02.png" />
+    <None Include="Resources\TimerNew01.png" />
+    <None Include="Resources\ArrowOldWhite.png" />
+    <None Include="Resources\70ProcWhite.png" />
+    <None Include="Resources\ArrowOld.png" />
+    <None Include="Resources\50procent.png" />
+    <None Include="Resources\Cloth1.jpg" />
+    <None Include="Resources\blessing-olive-green-design.jpg" />
+    <None Include="Resources\Timer11.png" />
+    <None Include="Resources\Timer10.png" />
+    <None Include="Resources\Timer09.png" />
+    <None Include="Resources\Timer08.png" />
+    <None Include="Resources\Timer07.png" />
+    <None Include="Resources\Timer06.png" />
+    <None Include="Resources\Timer05.png" />
+    <None Include="Resources\Timer04.png" />
+    <None Include="Resources\Timer03.png" />
+    <None Include="Resources\Timer02.png" />
+    <None Include="Resources\Timer01.png" />
+    <None Include="Resources\OthersCollage.png" />
+    <None Include="Resources\D2_32-CherryBlossom.png" />
+    <None Include="Resources\D2_31-Lightbulb.png" />
+    <None Include="Resources\D1_32-SmallDog.png" />
+    <None Include="Resources\D1_31-Frog.png" />
+    <None Include="Resources\AnimalsCollage.png" />
+    <None Include="Resources\BackcardRed.png" />
+    <None Include="Resources\BackcardGreen.png" />
+    <None Include="Resources\D2_30-Door.png" />
+    <None Include="Resources\D2_29-Entrance.png" />
+    <None Include="Resources\D2_28-RedCottage.png" />
+    <None Include="Resources\D2_27-Toadstool.png" />
+    <None Include="Resources\D2_26-RailwaySign.png" />
+    <None Include="Resources\D2_25-PostalBoat.png" />
+    <None Include="Resources\D2_24-Flowerpot.png" />
+    <None Include="Resources\D2_23-Can.png" />
+    <None Include="Resources\D2_22-Swimmer.png" />
+    <None Include="Resources\D2_21-MTB.png" />
+    <None Include="Resources\D2_20-Plane.png" />
+    <None Include="Resources\D2_19-Pipes.png" />
+    <None Include="Resources\D2_18-RedHouse.png" />
+    <None Include="Resources\D2_17-Flower.png" />
+    <None Include="Resources\D2_16-Runners.png" />
+    <None Include="Resources\D2_15-Sunflower.png" />
+    <None Include="Resources\D2_14-Stones.png" />
+    <None Include="Resources\D2_13-Elderflowers.png" />
+    <None Include="Resources\D2_12-Railway.png" />
+    <None Include="Resources\D2_11-Woodenwall.png" />
+    <None Include="Resources\D2_10-Chimney.png" />
+    <None Include="Resources\D2_09-Oak.png" />
+    <None Include="Resources\D2_08-GreenLeafs.png" />
+    <None Include="Resources\D2_07-Coffee.png" />
+    <None Include="Resources\D2_06-ColorfulLeaf.png" />
+    <None Include="Resources\D2_05-Apple.png" />
+    <None Include="Resources\D2_04-Camera.png" />
+    <None Include="Resources\D2_03-Moon.png" />
+    <None Include="Resources\D2_02-Clouds.png" />
+    <None Include="Resources\D2_01-FlyAgaric.png" />
+    <None Include="Resources\D1_30-Waxwing.png" />
+    <None Include="Resources\D1_29-FlyingGoose.png" />
+    <None Include="Resources\D1_28-CrestedGrebe.png" />
+    <None Include="Resources\D1_27-Jackdaw.png" />
+    <None Include="Resources\D1_26-CrestedTit.png" />
+    <None Include="Resources\D1_25-Eagle.png" />
+    <None Include="Resources\D1_24-SwanHead.png" />
+    <None Include="Resources\D1_23-GreatTit.png" />
+    <None Include="Resources\D1_22-SharPei.png" />
+    <None Include="Resources\D1_21-Cows.png" />
+    <None Include="Resources\D1_20-Nuthatcher.png" />
+    <None Include="Resources\D1_19-Lapwing.png" />
+    <None Include="Resources\D1_18-CowCalf.png" />
+    <None Include="Resources\D1_17-Bullfinch.png" />
+    <None Include="Resources\D1_16-Sheep.png" />
+    <None Include="Resources\D1_15-Redrobin.png" />
+    <None Include="Resources\D1_14-EuropeanAdder.png" />
+    <None Include="Resources\D1_13-Bumblebee.png" />
+    <None Include="Resources\D1_12-SwanButts.png" />
+    <None Include="Resources\D1_11-Squirrel.png" />
+    <None Include="Resources\D1_10-CanadianGooseWings.png" />
+    <None Include="Resources\D1_09-Cranes.png" />
+    <None Include="Resources\D1_08-Sparrow.png" />
+    <None Include="Resources\D1_07-HorseHead.png" />
+    <None Include="Resources\D1_06-Seagull.png" />
+    <None Include="Resources\D1_05-Dragonfly.png" />
+    <None Include="Resources\D1_04-BluetitEgg.png" />
+    <None Include="Resources\D1_03-BluetitLook.png" />
+    <None Include="Resources\D1_02-Blackbird.png" />
+    <None Include="Resources\D1_01-Dog.png" />
+    <None Include="Resources\hämta.png" />
+    <None Include="Resources\smb3_level_clear.wav" />
+    <None Include="Resources\smb_stage_clear.wav" />
+    <None Include="Resources\smb_mariodie.wav" />
+    <None Include="Resources\smb_coin.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
