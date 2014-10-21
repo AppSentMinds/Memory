@@ -8,14 +8,18 @@ namespace Memory
 {
     public class ComputerPlayer : Player   
     {
-        int difficulty;
-        
-        public ComputerPlayer(string _name, int _difficulty)
+        public ComputerPlayer(string _name)
         {
             Name = _name;
-            this.difficulty = _difficulty;
             Points = 0;
             Winnings = 0;
+            Type = "computer";
         }
+
+        //metod för ForgetACard();
+        //medod MemorizeACard(); kolla om den redan finns i minnet.
+        
+
+        
     }
 }

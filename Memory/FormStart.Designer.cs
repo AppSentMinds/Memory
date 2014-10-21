@@ -44,6 +44,7 @@
             this.cbCards = new System.Windows.Forms.ComboBox();
             this.pbSizeArrow = new System.Windows.Forms.PictureBox();
             this.gbNames = new System.Windows.Forms.Panel();
+            this.btnAddComputerPlayer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
@@ -58,7 +59,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.gbSize = new System.Windows.Forms.Panel();
-            this.btnAddComputerPlayer = new System.Windows.Forms.Button();
+            this.cbComputerDifficulty = new System.Windows.Forms.ComboBox();
+            this.lblComputerDifficulty = new System.Windows.Forms.Label();
+            this.lblSizeComputer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecksArrow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckMixed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDeckAnimals)).BeginInit();
@@ -179,7 +182,7 @@
             this.lblSizeInfo.AutoSize = true;
             this.lblSizeInfo.Font = new System.Drawing.Font("Franklin Gothic Demi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSizeInfo.ForeColor = System.Drawing.Color.White;
-            this.lblSizeInfo.Location = new System.Drawing.Point(44, 215);
+            this.lblSizeInfo.Location = new System.Drawing.Point(36, 215);
             this.lblSizeInfo.Name = "lblSizeInfo";
             this.lblSizeInfo.Size = new System.Drawing.Size(193, 63);
             this.lblSizeInfo.TabIndex = 8;
@@ -191,7 +194,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(47, 80);
+            this.label8.Location = new System.Drawing.Point(47, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 17);
             this.label8.TabIndex = 10;
@@ -202,7 +205,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(47, 24);
+            this.label6.Location = new System.Drawing.Point(47, 19);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 17);
             this.label6.TabIndex = 10;
@@ -212,7 +215,7 @@
             // 
             this.cbTime.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTime.FormattingEnabled = true;
-            this.cbTime.Location = new System.Drawing.Point(52, 100);
+            this.cbTime.Location = new System.Drawing.Point(52, 88);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(167, 23);
             this.cbTime.TabIndex = 9;
@@ -222,7 +225,7 @@
             // 
             this.cbCards.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCards.FormattingEnabled = true;
-            this.cbCards.Location = new System.Drawing.Point(52, 44);
+            this.cbCards.Location = new System.Drawing.Point(52, 39);
             this.cbCards.Name = "cbCards";
             this.cbCards.Size = new System.Drawing.Size(167, 23);
             this.cbCards.TabIndex = 9;
@@ -231,7 +234,7 @@
             // pbSizeArrow
             // 
             this.pbSizeArrow.Image = global::Memory.Properties.Resources.ArrowOldWhite_opt;
-            this.pbSizeArrow.Location = new System.Drawing.Point(109, 175);
+            this.pbSizeArrow.Location = new System.Drawing.Point(109, 173);
             this.pbSizeArrow.Name = "pbSizeArrow";
             this.pbSizeArrow.Size = new System.Drawing.Size(63, 37);
             this.pbSizeArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -257,6 +260,17 @@
             this.gbNames.Name = "gbNames";
             this.gbNames.Size = new System.Drawing.Size(274, 318);
             this.gbNames.TabIndex = 11;
+            // 
+            // btnAddComputerPlayer
+            // 
+            this.btnAddComputerPlayer.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddComputerPlayer.Location = new System.Drawing.Point(13, 95);
+            this.btnAddComputerPlayer.Name = "btnAddComputerPlayer";
+            this.btnAddComputerPlayer.Size = new System.Drawing.Size(112, 39);
+            this.btnAddComputerPlayer.TabIndex = 11;
+            this.btnAddComputerPlayer.Text = "Add Computer Player";
+            this.btnAddComputerPlayer.UseVisualStyleBackColor = true;
+            this.btnAddComputerPlayer.Click += new System.EventHandler(this.btnAddComputerPlayer_Click);
             // 
             // label2
             // 
@@ -318,11 +332,11 @@
             this.lblNamesInfo.AutoSize = true;
             this.lblNamesInfo.Font = new System.Drawing.Font("Franklin Gothic Demi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNamesInfo.ForeColor = System.Drawing.Color.White;
-            this.lblNamesInfo.Location = new System.Drawing.Point(48, 215);
+            this.lblNamesInfo.Location = new System.Drawing.Point(36, 215);
             this.lblNamesInfo.Name = "lblNamesInfo";
-            this.lblNamesInfo.Size = new System.Drawing.Size(178, 42);
+            this.lblNamesInfo.Size = new System.Drawing.Size(212, 63);
             this.lblNamesInfo.TabIndex = 8;
-            this.lblNamesInfo.Text = "1. Write your names.\r\nNumber of players: 2 - 5";
+            this.lblNamesInfo.Text = "1. Write your names and/or \r\nadd computer players.\r\nNumber of players: 2 - 5";
             this.lblNamesInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblInfo
@@ -380,7 +394,7 @@
             this.gbDecks.Controls.Add(this.btnBackCards);
             this.gbDecks.Controls.Add(this.lblDecksInfo);
             this.gbDecks.Controls.Add(this.pbDecksArrow);
-            this.gbDecks.Location = new System.Drawing.Point(243, 157);
+            this.gbDecks.Location = new System.Drawing.Point(25, 48);
             this.gbDecks.Name = "gbDecks";
             this.gbDecks.Size = new System.Drawing.Size(274, 318);
             this.gbDecks.TabIndex = 12;
@@ -411,30 +425,55 @@
             // 
             this.gbSize.BackColor = System.Drawing.Color.Transparent;
             this.gbSize.BackgroundImage = global::Memory.Properties.Resources._50procent_opt;
-            this.gbSize.Controls.Add(this.gbDecks);
             this.gbSize.Controls.Add(this.btnStart);
             this.gbSize.Controls.Add(this.btnBackSize);
+            this.gbSize.Controls.Add(this.lblSizeComputer);
             this.gbSize.Controls.Add(this.lblSizeInfo);
             this.gbSize.Controls.Add(this.pbSizeArrow);
             this.gbSize.Controls.Add(this.label6);
+            this.gbSize.Controls.Add(this.lblComputerDifficulty);
             this.gbSize.Controls.Add(this.label8);
             this.gbSize.Controls.Add(this.cbCards);
+            this.gbSize.Controls.Add(this.cbComputerDifficulty);
             this.gbSize.Controls.Add(this.cbTime);
             this.gbSize.Location = new System.Drawing.Point(25, 48);
             this.gbSize.Name = "gbSize";
             this.gbSize.Size = new System.Drawing.Size(274, 318);
             this.gbSize.TabIndex = 10;
             // 
-            // btnAddComputerPlayer
+            // cbComputerDifficulty
             // 
-            this.btnAddComputerPlayer.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddComputerPlayer.Location = new System.Drawing.Point(13, 95);
-            this.btnAddComputerPlayer.Name = "btnAddComputerPlayer";
-            this.btnAddComputerPlayer.Size = new System.Drawing.Size(112, 39);
-            this.btnAddComputerPlayer.TabIndex = 11;
-            this.btnAddComputerPlayer.Text = "Add Computer Player";
-            this.btnAddComputerPlayer.UseVisualStyleBackColor = true;
-            this.btnAddComputerPlayer.Click += new System.EventHandler(this.btnAddComputerPlayer_Click);
+            this.cbComputerDifficulty.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbComputerDifficulty.FormattingEnabled = true;
+            this.cbComputerDifficulty.Location = new System.Drawing.Point(53, 142);
+            this.cbComputerDifficulty.Name = "cbComputerDifficulty";
+            this.cbComputerDifficulty.Size = new System.Drawing.Size(167, 23);
+            this.cbComputerDifficulty.TabIndex = 9;
+            this.cbComputerDifficulty.SelectedIndexChanged += new System.EventHandler(this.cbComputerDifficulty_SelectedIndexChanged);
+            // 
+            // lblComputerDifficulty
+            // 
+            this.lblComputerDifficulty.AutoSize = true;
+            this.lblComputerDifficulty.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComputerDifficulty.ForeColor = System.Drawing.Color.White;
+            this.lblComputerDifficulty.Location = new System.Drawing.Point(52, 122);
+            this.lblComputerDifficulty.Name = "lblComputerDifficulty";
+            this.lblComputerDifficulty.Size = new System.Drawing.Size(148, 17);
+            this.lblComputerDifficulty.TabIndex = 10;
+            this.lblComputerDifficulty.Text = "Intelligence of computer";
+            // 
+            // lblSizeComputer
+            // 
+            this.lblSizeComputer.AutoSize = true;
+            this.lblSizeComputer.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSizeComputer.ForeColor = System.Drawing.Color.White;
+            this.lblSizeComputer.Location = new System.Drawing.Point(25, 212);
+            this.lblSizeComputer.Name = "lblSizeComputer";
+            this.lblSizeComputer.Size = new System.Drawing.Size(230, 68);
+            this.lblSizeComputer.TabIndex = 8;
+            this.lblSizeComputer.Text = "3. Pick how many cards\r\nyou want to play with,\r\ntime to make your move and \r\nhow " +
+    "smart you like the computer to be.";
+            this.lblSizeComputer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FormStart
             // 
@@ -444,9 +483,10 @@
             this.BackgroundImage = global::Memory.Properties.Resources.blessing_olive_green_design_opt;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(329, 399);
-            this.Controls.Add(this.gbNames);
             this.Controls.Add(this.gbSize);
+            this.Controls.Add(this.gbDecks);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.gbNames);
             this.MaximizeBox = false;
             this.Name = "FormStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -499,5 +539,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel gbSize;
         private System.Windows.Forms.Button btnAddComputerPlayer;
+        private System.Windows.Forms.Label lblSizeComputer;
+        private System.Windows.Forms.Label lblComputerDifficulty;
+        private System.Windows.Forms.ComboBox cbComputerDifficulty;
     }
 }

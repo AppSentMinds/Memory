@@ -20,8 +20,9 @@ namespace Memory
         private int time;
         private List<Player> playerList;
         private int time2;
+        private int difficulty;
 
-        public EndScreen(List<Player> _winnerList, List <Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2)
+        public EndScreen(List<Player> _winnerList, List <Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2, int _difficulty)
         {
             InitializeComponent();
             this.winnerList = _winnerList;
@@ -31,6 +32,7 @@ namespace Memory
             this.selectedDeck = _selectedDeck;
             this.time = _time;
             this.time2 = _time2;
+            this.difficulty = _difficulty;
 
             if (winnerList.Count == 1)
             {
@@ -57,7 +59,7 @@ namespace Memory
 
         private void btnRematch_Click(object sender, EventArgs e)
         {
-            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2);
+            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2, difficulty);
             this.Dispose();
             memory.ShowDialog();
         }

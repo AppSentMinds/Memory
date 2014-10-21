@@ -25,6 +25,7 @@ namespace Memory
         private Timer myTimer2;
         private Timer imageTimer;
         private Timer imageTimer2;
+        private Timer computerTimer;
         private Stream[] sounds = { Properties.Resources.pair_FX, Properties.Resources.All_hail_the_winner, Properties.Resources.Tie };
         private int time;
         private int totalCardSize;
@@ -35,8 +36,11 @@ namespace Memory
         int timerCounter;
         int timerCounter2;
         int time2;
+        int difficulty;
+        List<Card> computerMemoryList;
+        int computerChoice;
 
-        public Memory(List<Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2) //constructor
+        public Memory(List<Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2, int _difficulty) //constructor
         {
             InitializeComponent();
 
@@ -46,10 +50,12 @@ namespace Memory
             this.selectedDeck = _selectedDeck;
             this.time = _time;
             this.time2 = _time2;
+            this.difficulty = _difficulty;
 
             allCardsInPlayList = new List<Card>();
             compareTwoCardsList = new List<Card>();
-           
+            computerMemoryList = new List<Card>();
+
             myTimer = new Timer();
             myTimer.Interval = time;
             myTimer.Tick += new System.EventHandler(TimerEvent);
@@ -70,9 +76,13 @@ namespace Memory
             imageTimer2.Tick += imageTimer_Tick2;
             timerCounter2 = 0;
 
+            computerTimer = new Timer();
+            computerTimer.Interval = time / 3;
+            computerTimer.Tick += computerTimer_Tick;
+
             //add playerlist to listbox and create datasource
             lblPlayersInGame.Text = "";
-            foreach (HumanPlayer p in playerList)
+            foreach (Player p in playerList)
             {
                 lblPlayersInGame.Text += p.Name + "\nScore: " + p.Points + "\nWins: " + p.Winnings + "\n\n";
             }
@@ -104,13 +114,28 @@ namespace Memory
 
             RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
 
-            //selects first player in listbox to begin game
-
+            //first player
             playerList[0].CurrentlyPlaying = true;
             lblPlayerTurn.Text = playerList[0].Name + "'s turn";
+            if (playerList[0].Type == "computer")
+            {
+
+                foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
+                {
+                    c.Enabled = false;
+                }
+                computerTimer.Start();
+            }
         }
 
-       
+        void computerTimer_Tick(object sender, EventArgs e)
+        {
+
+
+            computerTimer.Stop();
+            ComputersMove();
+        }
+
 
         private void imageTimer_Tick(object sender, EventArgs e)
         {
@@ -150,13 +175,51 @@ namespace Memory
             c.Image = c.Front;
             c.Flipped = true;
             compareTwoCardsList.Add(c);
+            computerMemoryList.Add(c);
             c.Enabled = false;
 
             if (compareTwoCardsList.Count == 1)
             {
                 myTimer.Start();
                 imageTimer.Start();
+
             }
+            else if (compareTwoCardsList.Count == 2)
+            {
+
+
+                myTimer.Stop();
+                imageTimer.Stop();
+                timerCounter = 0;
+                pbTimer.Image = timerImages[timerImages.Count() - 1];
+                CompareCards();
+            }
+        }
+
+        public void ComputersMove()
+        {
+            if (compareTwoCardsList.Count < 2)
+            {
+                Random rand = new Random();
+                computerChoice = rand.Next(0, allCardsInPlayList.Count);
+                Card c = allCardsInPlayList[computerChoice];
+                c.Image = c.Front;
+                c.Flipped = true;
+                compareTwoCardsList.Add(c);
+                computerMemoryList.Add(c);
+                c.Enabled = false;
+
+                foreach (Card d in allCardsInPlayList) //no cards are clickable during timer interval
+                {
+                    d.Enabled = false;
+                }
+
+                computerTimer.Start();
+                myTimer.Start();
+                imageTimer.Start();
+            }
+
+
             else if (compareTwoCardsList.Count == 2)
             {
 
@@ -167,7 +230,6 @@ namespace Memory
                 CompareCards();
             }
         }
-
 
         public void TimerEvent(object sender, EventArgs e)
         {
@@ -238,7 +300,6 @@ namespace Memory
         {
             if (compareTwoCardsList[0].Id == (compareTwoCardsList[1].Id))
             {
-
                 myTimer2.Stop();
                 imageTimer2.Stop();
                 timerCounter2 = 0;
@@ -249,6 +310,7 @@ namespace Memory
                 IsThereAWinner();
                 compareTwoCardsList.Clear();
             }
+
             else
             {
                 foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
@@ -263,7 +325,7 @@ namespace Memory
         public void GoToNextPlayer()
         {
             int i;
-            foreach (HumanPlayer p in playerList)
+            foreach (Player p in playerList)
             {
                 if (p.CurrentlyPlaying == true)
                 {
@@ -280,6 +342,14 @@ namespace Memory
                     }
                     playerList[i].CurrentlyPlaying = true;
                     lblPlayerTurn.Text = playerList[i].Name + "'s turn";
+                    if (playerList[i].Type == "computer")
+                    {
+                        foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
+                        {
+                            c.Enabled = false;
+                        }
+                        computerTimer.Start();
+                    }
                     break;
                 }
             }
@@ -291,12 +361,12 @@ namespace Memory
             timerCounter2 = 0;
             pbTimer.Image = timerImages[timerImages.Count() - 1];
             pbTimer.Image = timerImages2[timerImages2.Count() - 1];
-           
+
         }
 
         public void GivePoint()
         {
-            foreach (HumanPlayer p in playerList)
+            foreach (Player p in playerList)
             {
                 if (p.CurrentlyPlaying == true)
                 {
@@ -304,11 +374,20 @@ namespace Memory
                     SoundPlayer player0 = new SoundPlayer(sounds[0]);
                     player0.Play();
                     player0.Stream.Position = 0;
+
+                    if (p.Type == "computer")
+                    {
+                        foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
+                        {
+                            c.Enabled = false;
+                        }
+                        computerTimer.Start();
+                    }
                 }
             }
 
             lblPlayersInGame.Text = "";
-            foreach (HumanPlayer p in playerList)
+            foreach (Player p in playerList)
             {
                 lblPlayersInGame.Text += p.Name + "\nScore: " + p.Points + "\nWins: " + p.Winnings + "\n\n";
             }
@@ -320,7 +399,7 @@ namespace Memory
             int highestPoint = 0;
             List<Player> winnerList = new List<Player>();
 
-            foreach (HumanPlayer p in playerList)
+            foreach (Player p in playerList)
             {
                 totalPointsAllPlayers += p.Points;
             }
@@ -334,7 +413,7 @@ namespace Memory
                         highestPoint = playerList[i].Points;
                     }
                 }
-                foreach (HumanPlayer p in playerList)
+                foreach (Player p in playerList)
                 {
                     if (p.Points == highestPoint)
                     {
@@ -355,17 +434,17 @@ namespace Memory
                     player1.Play();
                     player1.Stream.Position = 0;
                 }
-                foreach (HumanPlayer p in playerList)
+                foreach (Player p in playerList)
                 {
                     p.Points = 0;
                 }
 
-                EndScreen endScreen = new EndScreen(winnerList, playerList, columns, rows, selectedDeck, time, time2);
+                EndScreen endScreen = new EndScreen(winnerList, playerList, columns, rows, selectedDeck, time, time2, difficulty);
                 this.Dispose();
                 endScreen.ShowDialog();
                 winnerList.Clear();
             }
-             
+
 
         }
 
@@ -389,7 +468,7 @@ namespace Memory
             }
         }
 
- 
+
 
         private void btnEndGame_Click(object sender, EventArgs e)
         {

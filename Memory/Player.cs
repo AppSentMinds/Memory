@@ -12,10 +12,12 @@ namespace Memory
         private int points;
         private bool currentlyPlaying = false;
         private int winnings;
+        private string type;
 
         public Player()
         {
         }
+  
   
         public string Name
         {
@@ -39,6 +41,12 @@ namespace Memory
         {
             get { return winnings; }
             set { winnings = value; }
+        }
+
+        public string Type
+        {
+            get { return type; }
+            set { type = value; }
         }
     }
 }

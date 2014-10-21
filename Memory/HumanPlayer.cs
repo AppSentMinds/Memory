@@ -10,9 +10,11 @@ namespace Memory
     {
         public HumanPlayer(string _name)
         {  
+
             this.Name = _name;
             Points = 0;
             Winnings = 0;
+            Type = "human";
         }
     }
 }

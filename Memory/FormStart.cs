@@ -24,34 +24,42 @@ namespace Memory
         int time;
         int time2;
         int computerCount;
+        int diffuculty;
 
         public FormStart()
         {
             InitializeComponent();
             btnStart.Enabled = false;
             lblInfo.Text = "";
+            computerCount = 0;
 
             gbNames.Visible = true;
             gbDecks.Visible = false;
             gbSize.Visible = false;
             btnNextNames.Enabled = false;
-            pbDecksArrow.Visible = false;
-            pbSizeArrow.Visible = false;
-            lblDecksInfo.Visible = false;
-            lblSizeInfo.Visible = false;
             btnNextDecks.Enabled = false;
+            cbComputerDifficulty.Visible = false;
+            lblComputerDifficulty.Visible = false;
+            lblSizeComputer.Visible = false;
+
+            tbName.MaxLength = 18;
 
             cbCards.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCards.Items.Add("4 cards - very easy");
-            cbCards.Items.Add("16 cards - easy");
-            cbCards.Items.Add("36 cards - medium");
-            cbCards.Items.Add("64 cards - hard");
+            cbCards.Items.Add("4 cards - Mouse");
+            cbCards.Items.Add("16 cards - Guinnea Pig");
+            cbCards.Items.Add("36 cards - Cow");
+            cbCards.Items.Add("64 cards - Elephant");
 
             cbTime.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbTime.Items.Add("Slow");
-            cbTime.Items.Add("Medium");
-            cbTime.Items.Add("Fast");
-            
+            cbTime.Items.Add("Snail");
+            cbTime.Items.Add("Dog");
+            cbTime.Items.Add("Cheetah");
+
+            cbComputerDifficulty.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbComputerDifficulty.Items.Add("Goldfish");
+            cbComputerDifficulty.Items.Add("Cat");
+            cbComputerDifficulty.Items.Add("Owl");
+
             SoundPlayer player0 = new SoundPlayer(sounds[0]);
             player0.Play();
             player0.Stream.Position = 0;
@@ -63,33 +71,32 @@ namespace Memory
             AddPlayer();
         }
 
+        private void btnAddComputerPlayer_Click(object sender, EventArgs e)
+        {
+            string computerName = "Computer " + (computerCount + 1);
+            lblInfo.Text = "";
+            name = computerName;
+            computerCount++;
+            ComputerPlayer p = new ComputerPlayer(name);
+            playerList.Add(p);
+            lbNames.Items.Add(p.Name);
+            CheckInput();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             try
             {
+                if (playerList[lbNames.SelectedIndex].Type == "computer")
+                {
+                    computerCount--;
+                }
                 playerList.RemoveAt(lbNames.SelectedIndex);
                 lbNames.Items.Remove(lbNames.SelectedItem);
                 lblInfo.Text = "";
+               
 
-                //check if listbox has 2 items to make startbutton enabled or disabled
-                if (lbNames.Items.Count > 5)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
-                }
-                else if (lbNames.Items.Count < 2)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Need at least 2 players.";
-                }
-                else
-                {
-                    btnNextNames.Enabled = true;
-                }
-                
-
+                CheckInput();
             }
             catch
             {
@@ -109,20 +116,14 @@ namespace Memory
         {
             gbNames.Visible = false;
             gbDecks.Visible = true;
-            pbNamesArrow.Visible = false;
-            lblNamesInfo.Visible = false;
-            pbDecksArrow.Visible = true;
-            lblDecksInfo.Visible = true;
+
         }
 
         private void btnBackCards_Click(object sender, EventArgs e)
         {
             gbDecks.Visible = false;
             gbNames.Visible = true;
-            pbNamesArrow.Visible = true;
-            lblNamesInfo.Visible = true;
-            pbDecksArrow.Visible = false;
-            lblDecksInfo.Visible = false;
+
         }
 
         private void pbDeckAnimals_Click(object sender, EventArgs e)
@@ -147,20 +148,12 @@ namespace Memory
         {
             gbDecks.Visible = false;
             gbSize.Visible = true;
-            pbSizeArrow.Visible = true;
-            lblSizeInfo.Visible = true;
-            pbDecksArrow.Visible = false;
-            lblDecksInfo.Visible = false;
         }
 
         private void btnBackSize_Click(object sender, EventArgs e)
         {
             gbSize.Visible = false;
             gbDecks.Visible = true;
-            pbDecksArrow.Visible = true;
-            lblDecksInfo.Visible = true;
-            pbSizeArrow.Visible = false;
-            lblSizeInfo.Visible = false;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -169,10 +162,9 @@ namespace Memory
             player0.Play();
             player0.Stream.Position = 0;
 
-            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2);
+            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2, diffuculty);
             this.Hide();
             memory.ShowDialog();
-           
         }
 
         private void cbCards_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,22 +175,22 @@ namespace Memory
                 case 0:
                     columns = 2;
                     rows = 2;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 1:
                     columns = 4;
                     rows = 4;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 2:
                     columns = 6;
                     rows = 6;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 3:
                     columns = 8;
                     rows = 8;
-                    checkInput();
+                    CheckInput();
                     break;
             }
         }
@@ -211,30 +203,39 @@ namespace Memory
                 case 0:
                     time = 5000;
                     time2 = 1500;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 1:
                     time = 3000;
                     time2 = 1000;
-                    checkInput();
+                    CheckInput();
                     break;
                 case 2:
                     time = 1000;
                     time2 = 500;
-                    checkInput();
+                    CheckInput();
                     break;
             }
         }
 
-        private void btnAddComputerPlayer_Click(object sender, EventArgs e)
+        private void cbComputerDifficulty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string computerName = "Computer " + computerCount;
-            lblInfo.Text = "";
-            name = computerName;
-            computerCount++;
-            ComputerPlayer p = new ComputerPlayer(name, 2);
-            playerList.Add(p);
-            lbNames.Items.Add(p.Name);
+            choice = cbComputerDifficulty.SelectedIndex;
+            switch (choice)
+            {
+                case 0:
+                    diffuculty = 3;
+                    CheckInput();
+                    break;
+                case 1:
+                    diffuculty = 5;
+                    CheckInput();
+                    break;
+                case 2:
+                    diffuculty = 7;
+                    CheckInput();
+                    break;
+            }
         }
 
         //METHODS BELOW THIS POINT
@@ -249,23 +250,8 @@ namespace Memory
                 playerList.Add(p);
                 lbNames.Items.Add(p.Name);
                 tbName.Clear();
-               
-                if (lbNames.Items.Count > 5)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
-                }
-                else if (lbNames.Items.Count < 2)
-                {
-                    btnStart.Enabled = false;
-                    btnNextNames.Enabled = false;
-                    lblInfo.Text = "Need at least 2 players.";
-                } 
-                else
-                {
-                    btnNextNames.Enabled = true;
-                }
+
+                CheckInput();
             }
             else
             {
@@ -273,8 +259,42 @@ namespace Memory
             }
         }
 
-        private void checkInput()
+        private void CheckInput()
         {
+            if (lbNames.Items.Count > 5)
+            {
+                btnStart.Enabled = false;
+                btnNextNames.Enabled = false;
+                lblInfo.Text = "Maximum 5 players.\nRemove additional\nplayers";
+            }
+            else if (lbNames.Items.Count < 2)
+            {
+                btnStart.Enabled = false;
+                btnNextNames.Enabled = false;
+                lblInfo.Text = "Need at least 2 players.";
+            }
+            else
+            {
+                btnNextNames.Enabled = true;
+            }
+
+
+            if (computerCount > 0)
+            {
+                cbComputerDifficulty.Visible = true;
+                lblComputerDifficulty.Visible = true;
+                lblSizeComputer.Visible = true;
+                lblSizeInfo.Visible = false;
+            }
+            else
+            {
+                cbComputerDifficulty.Visible = false;
+                lblComputerDifficulty.Visible = false;
+                lblSizeComputer.Visible = false;
+                lblSizeInfo.Visible = true;
+            }
+
+
             if (columns != 0 && time != 0)
             {
                 btnStart.Enabled = true;
@@ -282,7 +302,10 @@ namespace Memory
 
         }
 
-       
+        
+
+
+
     }
 }
 
