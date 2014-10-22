@@ -40,7 +40,7 @@ namespace Memory
             }
             else
             {
-                foreach (HumanPlayer winner in winnerList)
+                foreach (Player winner in winnerList)
                 {
                     resultTied += "\n" + winner.Name;
                 }

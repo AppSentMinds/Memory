@@ -39,6 +39,7 @@ namespace Memory
         int difficulty;
         List<Card> computerMemoryList;
         int computerChoice;
+        int position;
 
         public Memory(List<Player> _playerList, int _columns, int _rows, int _selectedDeck, int _time, int _time2, int _difficulty) //constructor
         {
@@ -101,6 +102,7 @@ namespace Memory
             space = totalCardSize / 6;
             cardSize = totalCardSize - space;
 
+        
             //add all cards to board
             for (int i = 0; i < rows; i++)
             {
@@ -111,6 +113,12 @@ namespace Memory
                     this.pCards.Controls.Add(c);
                 }
             }
+            
+            foreach (Card c in allCardsInPlayList)
+            {
+                c.Postition = position;
+                position++;
+            }
 
             RandomizeIsInCardList(rows * columns, allCardsInPlayList, selectedDeckArray); //call method to ranomize cards and give id to cards and pictures
 
@@ -119,7 +127,6 @@ namespace Memory
             lblPlayerTurn.Text = playerList[0].Name + "'s turn";
             if (playerList[0].Type == "computer")
             {
-
                 foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
                 {
                     c.Enabled = false;
@@ -130,12 +137,9 @@ namespace Memory
 
         void computerTimer_Tick(object sender, EventArgs e)
         {
-
-
             computerTimer.Stop();
             ComputersMove();
         }
-
 
         private void imageTimer_Tick(object sender, EventArgs e)
         {
@@ -158,7 +162,6 @@ namespace Memory
             {
                 pbTimer.Image = timerImages2[timerCounter2];
                 timerCounter2++;
-
             }
             else
             {
@@ -167,7 +170,6 @@ namespace Memory
                 pbTimer.Image = timerImages2[timerImages2.Count() - 1];
             }
         }
-
 
         public void HandleEventClick(object sender, EventArgs e) //This is the method for the EventHandler that handles all clicks on cards
         {
@@ -182,12 +184,9 @@ namespace Memory
             {
                 myTimer.Start();
                 imageTimer.Start();
-
             }
             else if (compareTwoCardsList.Count == 2)
             {
-
-
                 myTimer.Stop();
                 imageTimer.Stop();
                 timerCounter = 0;
@@ -198,25 +197,31 @@ namespace Memory
 
         public void ComputersMove()
         {
-            if (compareTwoCardsList.Count < 2)
+            if (compareTwoCardsList.Count == 0)
             {
-                Random rand = new Random();
-                computerChoice = rand.Next(0, allCardsInPlayList.Count);
+                //TO DO: loop memory and check for pairs, if match, click on first match
 
-                while (allCardsInPlayList[computerChoice].Flipped == true)
+                Random rand = new Random();
+                computerChoice = rand.Next(allCardsInPlayList.Count);
+
+                while (allCardsInPlayList[computerChoice].Flipped == true) //so computer can't turn over a already turned card
                 {
-                    computerChoice = rand.Next(0, allCardsInPlayList.Count);
+                    computerChoice = rand.Next(allCardsInPlayList.Count);
                     if (allCardsInPlayList[computerChoice].Flipped == false)
                     {
                         break;
                     }
                 }
-
                 Card c = allCardsInPlayList[computerChoice];
                 c.Image = c.Front;
                 c.Flipped = true;
                 compareTwoCardsList.Add(c);
                 computerMemoryList.Add(c);
+
+                if (computerMemoryList.Count == 5)
+                {
+                    computerMemoryList.RemoveAt(0);
+                }
                 c.Enabled = false;
 
                 foreach (Card d in allCardsInPlayList) //no cards are clickable during timer interval
@@ -229,18 +234,58 @@ namespace Memory
                 imageTimer.Start();
             }
 
-
-
-
-            else if (compareTwoCardsList.Count == 2)
+            else if (compareTwoCardsList.Count == 1) //second card click
             {
+                bool foundPair = false;
+                for (int i = 0; i < computerMemoryList.Count - 1; i++) //check if there are any pairs.
+                {
+                    if ((computerMemoryList[i].Id == computerMemoryList[computerMemoryList.Count - 1].Id) && (computerMemoryList[i].Postition != computerMemoryList[computerMemoryList.Count -1].Postition))
+                    {
+                        computerChoice = computerMemoryList[i].Postition;
+                        foundPair = true;
+                        computerMemoryList.RemoveAt(i);
+                        computerMemoryList.RemoveAt(computerMemoryList.Count - 1);
+                        break;
+                    }
+                }
+                if (foundPair == false)
+                {
 
+                    Random rand = new Random();
+                    computerChoice = rand.Next(allCardsInPlayList.Count);
+
+                    while (allCardsInPlayList[computerChoice].Flipped == true)
+                    {
+                        computerChoice = rand.Next(allCardsInPlayList.Count);
+                        if (allCardsInPlayList[computerChoice].Flipped == false)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+
+                Card c = allCardsInPlayList[computerChoice];
+                c.Image = c.Front;
+                c.Flipped = true;
+                compareTwoCardsList.Add(c);
+                computerMemoryList.Add(c);
+
+                if (computerMemoryList.Count == 8)
+                {
+                    computerMemoryList.RemoveAt(0);
+                }
+
+
+                c.Enabled = false;
                 myTimer.Stop();
                 imageTimer.Stop();
                 timerCounter = 0;
                 pbTimer.Image = timerImages[timerImages.Count() - 1];
                 CompareCards();
+
             }
+            
         }
 
 
@@ -322,6 +367,19 @@ namespace Memory
                 compareTwoCardsList[1].Enabled = false;
                 IsThereAWinner();
                 compareTwoCardsList.Clear();
+
+                foreach (Player p in playerList)
+                {
+                    if (p.CurrentlyPlaying == true && p.Type == "computer")
+                    {
+
+                        foreach (Card c in allCardsInPlayList) //no cards are clickable during timer interval
+                        {
+                            c.Enabled = false;
+                        }
+                        computerTimer.Start();
+                    }
+                }
             }
 
             else
@@ -334,6 +392,7 @@ namespace Memory
                 imageTimer2.Start();
             }
         }
+
 
         public void GoToNextPlayer()
         {

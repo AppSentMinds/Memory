@@ -18,6 +18,7 @@ namespace Memory
         private bool flipped = false;
         private int startX;
         private int startY;
+        private int position;
 
         public Card(int posX, int posY, myEventHandler HandleEventClick, int cardSize, int space)
         {
@@ -30,6 +31,7 @@ namespace Memory
             TabIndex = 0;
             Image = back;
             this.Click += new System.EventHandler(HandleEventClick); //HandleEventClick is the method to handle the click
+            
         }
 
         public Image Back
@@ -54,6 +56,12 @@ namespace Memory
         {
             get { return flipped; }
             set { flipped = value; }
+        }
+
+        public int Postition
+        {
+            get { return position; }
+            set { position = value; }
         }
     }
 }
