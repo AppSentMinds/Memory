@@ -202,6 +202,16 @@ namespace Memory
             {
                 Random rand = new Random();
                 computerChoice = rand.Next(0, allCardsInPlayList.Count);
+
+                while (allCardsInPlayList[computerChoice].Flipped == true)
+                {
+                    computerChoice = rand.Next(0, allCardsInPlayList.Count);
+                    if (allCardsInPlayList[computerChoice].Flipped == false)
+                    {
+                        break;
+                    }
+                }
+
                 Card c = allCardsInPlayList[computerChoice];
                 c.Image = c.Front;
                 c.Flipped = true;
@@ -220,6 +230,8 @@ namespace Memory
             }
 
 
+
+
             else if (compareTwoCardsList.Count == 2)
             {
 
@@ -230,6 +242,7 @@ namespace Memory
                 CompareCards();
             }
         }
+
 
         public void TimerEvent(object sender, EventArgs e)
         {

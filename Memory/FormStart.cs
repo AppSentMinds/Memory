@@ -24,7 +24,7 @@ namespace Memory
         int time;
         int time2;
         int computerCount;
-        int diffuculty;
+        int difficulty;
 
         public FormStart()
         {
@@ -162,7 +162,7 @@ namespace Memory
             player0.Play();
             player0.Stream.Position = 0;
 
-            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2, diffuculty);
+            Memory memory = new Memory(playerList, columns, rows, selectedDeck, time, time2, difficulty);
             this.Hide();
             memory.ShowDialog();
         }
@@ -224,15 +224,15 @@ namespace Memory
             switch (choice)
             {
                 case 0:
-                    diffuculty = 3;
+                    difficulty = 3;
                     CheckInput();
                     break;
                 case 1:
-                    diffuculty = 5;
+                    difficulty = 5;
                     CheckInput();
                     break;
                 case 2:
-                    diffuculty = 7;
+                    difficulty = 7;
                     CheckInput();
                     break;
             }
