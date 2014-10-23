@@ -102,7 +102,7 @@ namespace Memory
             space = totalCardSize / 6;
             cardSize = totalCardSize - space;
 
-        
+
             //add all cards to board
             for (int i = 0; i < rows; i++)
             {
@@ -113,7 +113,7 @@ namespace Memory
                     this.pCards.Controls.Add(c);
                 }
             }
-            
+
             foreach (Card c in allCardsInPlayList)
             {
                 c.Postition = position;
@@ -178,6 +178,12 @@ namespace Memory
             c.Flipped = true;
             compareTwoCardsList.Add(c);
             computerMemoryList.Add(c);
+
+            if (computerMemoryList.Count == 8) //removes cards from memory
+            {
+                computerMemoryList.RemoveAt(0);
+            }
+
             c.Enabled = false;
 
             if (compareTwoCardsList.Count == 1)
@@ -199,17 +205,37 @@ namespace Memory
         {
             if (compareTwoCardsList.Count == 0)
             {
-                //TO DO: loop memory and check for pairs, if match, click on first match
 
-                Random rand = new Random();
-                computerChoice = rand.Next(allCardsInPlayList.Count);
-
-                while (allCardsInPlayList[computerChoice].Flipped == true) //so computer can't turn over a already turned card
+                bool foundPair = false;
+                for (int i = 0; i < computerMemoryList.Count; i++)
                 {
-                    computerChoice = rand.Next(allCardsInPlayList.Count);
-                    if (allCardsInPlayList[computerChoice].Flipped == false)
+                    for (int j = 0; j < computerMemoryList.Count; j++)
                     {
-                        break;
+                        if ((computerMemoryList[i].Id == computerMemoryList[j].Id) && (computerMemoryList[i].Postition != computerMemoryList[j].Postition && (computerMemoryList[i].Flipped == false && computerMemoryList[j].Flipped == false)))
+                        {
+                            computerChoice = computerMemoryList[j].Postition;
+                            foundPair = true;
+                            break;
+                        }
+                        if (foundPair == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if (foundPair == false)
+                {
+                    Random rand = new Random();
+                    computerChoice = rand.Next(allCardsInPlayList.Count);
+
+                    while (allCardsInPlayList[computerChoice].Flipped == true) //so computer can't turn over a already turned card
+                    {
+                        computerChoice = rand.Next(allCardsInPlayList.Count);
+                        if (allCardsInPlayList[computerChoice].Flipped == false)
+                        {
+                            break;
+                        }
                     }
                 }
                 Card c = allCardsInPlayList[computerChoice];
@@ -218,11 +244,11 @@ namespace Memory
                 compareTwoCardsList.Add(c);
                 computerMemoryList.Add(c);
 
-                if (computerMemoryList.Count == 5)
+                if (computerMemoryList.Count == 8)
                 {
                     computerMemoryList.RemoveAt(0);
                 }
-                c.Enabled = false;
+                //c.Enabled = false;
 
                 foreach (Card d in allCardsInPlayList) //no cards are clickable during timer interval
                 {
@@ -239,7 +265,7 @@ namespace Memory
                 bool foundPair = false;
                 for (int i = 0; i < computerMemoryList.Count - 1; i++) //check if there are any pairs.
                 {
-                    if ((computerMemoryList[i].Id == computerMemoryList[computerMemoryList.Count - 1].Id) && (computerMemoryList[i].Postition != computerMemoryList[computerMemoryList.Count -1].Postition))
+                    if ((computerMemoryList[i].Id == computerMemoryList[computerMemoryList.Count - 1].Id) && (computerMemoryList[i].Postition != computerMemoryList[computerMemoryList.Count - 1].Postition))
                     {
                         computerChoice = computerMemoryList[i].Postition;
                         foundPair = true;
@@ -264,7 +290,6 @@ namespace Memory
                     }
                 }
 
-
                 Card c = allCardsInPlayList[computerChoice];
                 c.Image = c.Front;
                 c.Flipped = true;
@@ -283,11 +308,8 @@ namespace Memory
                 timerCounter = 0;
                 pbTimer.Image = timerImages[timerImages.Count() - 1];
                 CompareCards();
-
             }
-            
         }
-
 
         public void TimerEvent(object sender, EventArgs e)
         {
